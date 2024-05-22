@@ -3,8 +3,10 @@
 #include <string.h>
 #include <readline/readline.h>
 #include <readline/history.h>
-
 #include "system.h"
+
+#define MAX_PROCESSES 10
+
 void print_minios(char* str);
 
 int main() {
@@ -20,9 +22,24 @@ int main() {
             break;
         }
 
-        if (strcmp(input,"minisystem") == 0){
+        if (strcmp(input,"greet") == 0){
+            greet();
+        }
+        else if (strcmp(input,"minisystem") == 0){
             minisystem();
         }
+        else if (strcmp(input,"makechild") == 0){
+            makechild();
+        }
+        else if (strcmp(input,"ipc") == 0){
+            ipc();
+        }
+        else if (strcmp(input,"pi") == 0){
+            pi();
+        }
+        else if (strcmp(input,"round_robin") == 0){
+            round_robin();
+	}
         else system(input);
     }
 

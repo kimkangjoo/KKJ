@@ -1,7 +1,7 @@
 CC = gcc
 
-final.img : Boot.img Sector.img disk.img
-	cat Boot.img Sector.img disk.img > final.img
+final.iso : Boot.img Sector.img disk.img
+	mkisofs -o final.iso -b Boot.img -no-emul-boot -boot-load-size 4 -boot-info-table .
 
 disk.img : main.img
 	objcopy -O binary main.img disk.img
@@ -22,4 +22,4 @@ Sector.img : Sector.asm
 	nasm -f bin -o Sector.img Sector.asm
 
 clean :
-	rm *.o
+	rm *.o rm *.img rm *.iso

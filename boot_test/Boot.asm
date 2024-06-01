@@ -14,34 +14,33 @@ start:
 print_loop1:
     lodsb
     or al, al
-    jz OS_info
+    jz system_info
     mov ah, 0x0E
     int 0x10
     jmp print_loop1
 
 system_info:
-    mov si, OS_info
+    mov si, msg2
 print_loop2:
     lodsb
     or al, al
-    jz logo
+    jz info1
     mov ah, 0x0E
     int 0x10
     jmp print_loop2
 
 info1:
-    mov si, info_1
+    mov si, msg3
 print_loop3:
     lodsb
     or al, al
-    jz boot_menu
+    jz info2
     mov ah, 0x0E
     int 0x10
     jmp print_loop3
 
 info2:
-    mov si, info_2
-
+    mov si, msg4
 print_loop4:
     lodsb
     or al, al
@@ -54,9 +53,9 @@ hang:
     jmp hang
 
 msg1 db 'Booting from miniOS!', 0
-OS_info db 'OS Information:', 0
-info_1 db '1. Process Scheduling: FCFS, SJF, SRTF, Round Robin', 0
-info_2 db '2. Memory Management: First Fit, Best Fit', 0
+msg2 db 'OS Information:', 0
+msg3 db '1. Process Scheduling: FCFS, SJF, SRTF, Round Robin', 0
+msg4 db '2. Memory Management: First Fit, Best Fit', 0
 
-times 510-($-$$) db 0      ; 부트 섹터를 0으로 채움
-dw 0xAA55
+times 510-($-$$) db 0
+dw 0xAA55   
